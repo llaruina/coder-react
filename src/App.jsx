@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <ItemListConteiner saludo="Bienvenido a la mejor página para comprar Funkos" />
+      <ItemListConteiner saludo="Bienvenido a la mejor página para comprar online" />
     </>
   )
 }

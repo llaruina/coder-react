@@ -5,7 +5,7 @@ const NavBar = () => {
 
     return (
         <>
-            <h1>Logo FunkoShop</h1>
+            <h1>Logo de la tienda</h1>
             <CartWidget />
         </>
     )
