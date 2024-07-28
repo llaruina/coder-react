@@ -152,9 +152,21 @@ export const getProductos = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (true) {
-                reject("No se pudieron obtener los productos")
-            } else {
                 resolve(items)
+            } else {
+                reject("No se pudieron obtener los productos")
+            }
+        }, 500)
+    })
+}
+
+export const getProductoPorId = (id) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (true) {
+                resolve(items.find(e => e.id == id))
+            } else {
+                reject("No se pudo obtener el producto")
             }
         }, 500)
     })

@@ -3,14 +3,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './componentes/NavBar/NavBar'
 import ItemListConteiner from './componentes/ItemListConteiner/ItemListConteiner'
+import ItemDetailConteiner from './componentes/ItemDetailConteiner/ItemDetailConteiner'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <NavBar />
-      <ItemListConteiner saludo="Bienvenido a la mejor página para comprar online" />
+      <BrowserRouter>
+        <NavBar />
+
+        <Routes>
+          <Route path='/' element={<ItemListConteiner />} />
+          <Route path='/detalle' element={<ItemDetailConteiner />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
