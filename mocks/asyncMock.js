@@ -164,7 +164,7 @@ export const getProductoPorId = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (true) {
-                resolve(items.find(e => e.id == id))
+                resolve(items.find(e => e.id.toString() == id))
             } else {
                 reject("No se pudo obtener el producto")
             }

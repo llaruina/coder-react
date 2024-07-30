@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { getProductoPorId, getProductos } from '../../../mocks/asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import {useParams} from 'react-router-dom'
+
 
 export const ItemDetailContainer = () => {
 
     const [producto, setProducto] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState()
-    const [idProducto, setIdProducto] = useState(1)
     const [mensaje, setMensaje] = useState('')
 
+    const {id} = useParams()
 
     useEffect(() => {
-        getProductoPorId(1).then(res => setProducto(res)).finally(() => setLoading(false))
-    }, [idProducto])
+        getProductoPorId(id).then(res => setProducto(res)).finally(() => setLoading(false))
+    }, [])
 
     if (loading) {
         return (
@@ -24,6 +26,8 @@ export const ItemDetailContainer = () => {
 
     return (
         <div>
+
+            producto &&
             <ItemDetail producto={producto} />
         </div>
     )

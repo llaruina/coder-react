@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './componentes/NavBar/NavBar'
 import ItemListConteiner from './componentes/ItemListConteiner/ItemListConteiner'
@@ -7,7 +6,6 @@ import ItemDetailConteiner from './componentes/ItemDetailConteiner/ItemDetailCon
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -16,7 +14,8 @@ function App() {
 
         <Routes>
           <Route path='/' element={<ItemListConteiner />} />
-          <Route path='/detalle' element={<ItemDetailConteiner />} />
+          <Route path='/categoria/:cat' element={<ItemListConteiner />} />
+          <Route path='/detalle/:id' element={<ItemDetailConteiner />} />
         </Routes>
       </BrowserRouter>
     </>

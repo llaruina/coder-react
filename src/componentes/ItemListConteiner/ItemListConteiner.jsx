@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getProductos } from '../../../mocks/asyncMock.js'
 import ItemList from '../ItemList/ItemList.jsx'
+import { useParams } from 'react-router-dom'
 
 
 
@@ -9,10 +10,17 @@ const ItemListConteiner = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState()
 
+    const { cat } = useParams()
+
     useEffect(() => {
-        getProductos().then(res => setProductos(res)).finally(() => setLoading(false))
-        console.log(productos)
-    }, [])
+
+        if (cat) {
+            getProductos().then(res => setProductos(res.filter(e => e.categoria === cat))).finally(setLoading(false))
+            console.log(productos)
+        } else {
+            getProductos().then(res => setProductos(res)).finally(setLoading(false))
+        }
+    }, [cat])
 
     if (loading) {
         return (
