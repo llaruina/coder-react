@@ -160,14 +160,36 @@ export const getProductos = () => {
     })
 }
 
+/*
 export const getProductoPorId = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (true) {
-                resolve(items.find(e => e.id.toString() == id))
+                console.log('El id es: ' + id)
+                console.log(resolve(items.find(e => e.id.toString() === id)))
+
             } else {
                 reject("No se pudo obtener el producto")
             }
         }, 500)
+           
     })
-}
+     */
+
+    export const getProductoPorId = (id) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('El id es:', id); // Verifica el id recibido
+    
+                const producto = items.find(e => e.id.toString() === id);
+                
+                if (producto) {
+                    console.log('Producto encontrado:', producto); // Verifica el producto encontrado
+                    resolve(producto);
+                } else {
+                    console.log('Producto no encontrado');
+                    reject('No se pudo obtener el producto');
+                }
+            }, 500);
+        });
+    }

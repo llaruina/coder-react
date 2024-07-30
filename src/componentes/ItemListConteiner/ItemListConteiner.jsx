@@ -16,7 +16,6 @@ const ItemListConteiner = () => {
 
         if (cat) {
             getProductos().then(res => setProductos(res.filter(e => e.categoria === cat))).finally(setLoading(false))
-            console.log(productos)
         } else {
             getProductos().then(res => setProductos(res)).finally(setLoading(false))
         }
