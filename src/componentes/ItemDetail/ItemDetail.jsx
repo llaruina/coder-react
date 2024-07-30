@@ -1,16 +1,14 @@
 import react from 'react'
 
-const ItemDetail = ({ e }) => {
-
-    console.log('Item e: ' + { e })
+const ItemDetail = ({ producto }) => {
 
     return (
         <div>
 
-            <h2>{e.titulo} </h2>
-            <img src={e.imagen} alt="foto del producto" />
-            <p> {e.descripcion}</p>
-            <p>${e.precio}</p>
+            <h2>{producto.titulo} </h2>
+            <img src={producto.imagen} alt="foto del producto" />
+            <p> {producto.descripcion}</p>
+            <p>${producto.precio}</p>
         </div>
     )
 }

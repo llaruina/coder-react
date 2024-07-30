@@ -160,26 +160,11 @@ export const getProductos = () => {
     })
 }
 
-/*
-export const getProductoPorId = (id) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (true) {
-                console.log('El id es: ' + id)
-                console.log(resolve(items.find(e => e.id.toString() === id)))
-
-            } else {
-                reject("No se pudo obtener el producto")
-            }
-        }, 500)
-           
-    })
-     */
 
     export const getProductoPorId = (id) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log('El id es:', id); // Verifica el id recibido
+                console.log('El id es:', id); // El id llega bien
     
                 const producto = items.find(e => e.id.toString() === id);
                 

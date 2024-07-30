@@ -14,9 +14,9 @@ export const ItemDetailContainer = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        getProductoPorId(id).then(res => setProducto(res)).finally(setLoading(false))
-        console.log( 'El producto del ItemDetailContainer es: ' + producto)
-    }, [id])
+
+        getProductoPorId(id).then(res => setProducto(res)).finally(() => setLoading(false))
+    }, [producto])
 
     if (loading) {
         return (
