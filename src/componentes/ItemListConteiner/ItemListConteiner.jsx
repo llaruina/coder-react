@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { getProductos } from '../../../mocks/asyncMock.js'
 import ItemList from '../ItemList/ItemList.jsx'
 import { useParams } from 'react-router-dom'
+import { db } from '../../services/firebaseConfig.jsx'
+import { collection, getDocs } from 'firebase/firestore'
 
 
 
@@ -14,11 +15,42 @@ const ItemListConteiner = () => {
 
     useEffect(() => {
 
-        if (cat) {
-            getProductos().then(res => setProductos(res.filter(e => e.categoria === cat))).finally(setLoading(false))
-        } else {
-            getProductos().then(res => setProductos(res)).finally(setLoading(false))
-        }
+        setLoading(true)
+
+        const productosObtenidos = cat ? query(collection(db, "productos"), where('category', '==', cat)) : collection(db, "productos")
+
+        console.log(productosObtenidos)
+
+        getDocs(productosObtenidos).then(snapshot => {
+            const dataProductos = snapshot.docs.map(doc => {
+                const conId = doc.data()
+                return { id: doc.id, ...conId }
+            })
+            setProductos(dataProductos)
+        }).finally(() => setLoading(false))
+
+
+        /*
+                if (cat) {
+                    const productosPorCat = query(collection(db, "productos"), where('category', '==', cat))
+                    getDocs(productosPorCat).then(snapshot => {
+                        const dataProductos = snapshot.docs.map(doc => {
+                            const conId = doc.data()
+                            return { id: doc.id, ...conId }
+                        })
+                        setProductos(dataProductos)
+                    }).finally(() => setLoading(false))
+                } else {
+                    const productosRef = collection(db, "productos")
+                    getDocs(productosRef).then(snapshot => {
+                        const dataProductos = snapshot.docs.map(doc => {
+                            const conId = doc.data()
+                            return { id: doc.id, ...conId }
+                        })
+                        setProductos(dataProductos)
+                    }).finally(() => setLoading(false))
+                }
+        */
     }, [cat])
 
     if (loading) {
@@ -34,12 +66,14 @@ const ItemListConteiner = () => {
     }
 
     return (
+
         <div>
             {
                 productos.length > 0 &&
                 <ItemList productos={productos} />
             }
         </div>
+
     )
 
 }
