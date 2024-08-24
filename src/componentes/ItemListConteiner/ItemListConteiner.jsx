@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList.jsx'
 import { useParams } from 'react-router-dom'
 import { db } from '../../services/firebaseConfig.jsx'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 
 
@@ -17,7 +17,7 @@ const ItemListConteiner = () => {
 
         setLoading(true)
 
-        const productosObtenidos = cat ? query(collection(db, "productos"), where('category', '==', cat)) : collection(db, "productos")
+        const productosObtenidos = cat ? query(collection(db, "productos"), where('categoria', '==', cat)) : collection(db, "productos")
 
         console.log(productosObtenidos)
 
@@ -26,31 +26,34 @@ const ItemListConteiner = () => {
                 const conId = doc.data()
                 return { id: doc.id, ...conId }
             })
+
             setProductos(dataProductos)
         }).finally(() => setLoading(false))
 
 
-        /*
-                if (cat) {
-                    const productosPorCat = query(collection(db, "productos"), where('category', '==', cat))
-                    getDocs(productosPorCat).then(snapshot => {
-                        const dataProductos = snapshot.docs.map(doc => {
-                            const conId = doc.data()
-                            return { id: doc.id, ...conId }
-                        })
-                        setProductos(dataProductos)
-                    }).finally(() => setLoading(false))
-                } else {
-                    const productosRef = collection(db, "productos")
-                    getDocs(productosRef).then(snapshot => {
-                        const dataProductos = snapshot.docs.map(doc => {
-                            const conId = doc.data()
-                            return { id: doc.id, ...conId }
-                        })
-                        setProductos(dataProductos)
-                    }).finally(() => setLoading(false))
-                }
-        */
+        /* 
+                 if (cat) {
+                     const productosPorCat = query(collection(db, "productos"), where('category', '==', cat))
+                     getDocs(productosPorCat).then(snapshot => {
+                         const dataProductos = snapshot.docs.map(doc => {
+                             const conId = doc.data()
+                             return { id: doc.id, ...conId }
+                         })
+                         setProductos(dataProductos)
+                     }).finally(() => setLoading(false))
+                 } else {
+                     const productosRef = collection(db, "productos")
+                     getDocs(productosRef).then(snapshot => {
+                         const dataProductos = snapshot.docs.map(doc => {
+                             const conId = doc.data()
+                             return { id: doc.id, ...conId }
+                         })
+                         setProductos(dataProductos)
+                     }).finally(() => setLoading(false))
+                 }
+ 
+                 */
+
     }, [cat])
 
     if (loading) {
