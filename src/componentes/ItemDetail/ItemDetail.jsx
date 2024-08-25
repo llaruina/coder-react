@@ -9,8 +9,6 @@ export const ItemDetail = ({ producto }) => {
 
     const { titulo, imagen, precio, descripcion, id } = producto
 
-    console.log("Esta en carrito:" +  estaEnCarrito({ id }) )
-
     return (
         <div>
 

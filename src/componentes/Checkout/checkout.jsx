@@ -35,6 +35,7 @@ const Checkout = () => {
         setCart([])
         setOrden(orderId.id)
         setIsSubmitting(false)
+        console.log("La orden es: " + orderId.id)
     }
 
 

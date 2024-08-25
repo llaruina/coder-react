@@ -13,12 +13,12 @@ const CartItem = ({ producto }) => {
   return (
     <div className='item-card'>
       <h2 >{p.titulo}</h2>
-      <img src={p.image} alt="foto del producto" />
+      <img src={p.imagen} alt="foto del producto" />
       <p>${p.precio}</p>
       <p>Cantidad {p.cantidad} unidades</p>
       <p>Subtotal :  {p.precio * p.cantidad}</p>
       <ItemCount handleAddToCart={agregar} prod={producto} />
-      <button onClick={() => remover(p.id)}>eliminar producto</button>
+      <button onClick={() => remover(p.id)}>Eliminar producto</button>
     </div>
   )
 }
