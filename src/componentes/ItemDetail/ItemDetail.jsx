@@ -1,4 +1,4 @@
-import react from 'react'
+import React, { useContext, useState } from 'react'
 import ItemCount from '../Item/ItemCount'
 import { CartContext } from '../../Context/CartContex'
 import { Link } from 'react-router-dom'
@@ -9,6 +9,8 @@ export const ItemDetail = ({ producto }) => {
 
     const { titulo, imagen, precio, descripcion, id } = producto
 
+    console.log("Esta en carrito:" +  estaEnCarrito({ id }) )
+
     return (
         <div>
 
@@ -17,6 +19,7 @@ export const ItemDetail = ({ producto }) => {
             <p> {descripcion}</p>
             <p>${precio}</p>
             {
+                
                 estaEnCarrito({ id }) ?
                     <Link to='/cart'>Ir Al Carrito</Link>
                     :

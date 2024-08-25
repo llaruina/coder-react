@@ -22,7 +22,7 @@ export const ItemDetailContainer = () => {
 
         getDoc(productoDeFB).then(res => {
             const dataProducto = res.data()
-            const productoFinal = { ...dataProducto, id: snapshot.id }
+            const productoFinal = { ...dataProducto, id: res.id }
             setProducto(productoFinal)
         }).finally(setLoading(false))
 
